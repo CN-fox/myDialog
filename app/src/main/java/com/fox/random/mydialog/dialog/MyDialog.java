@@ -36,6 +36,8 @@ public class MyDialog extends View {
      */
     private int max = 100;
     private String speed = "0kb";
+    private String COLOR_CENTER_CIR = "#474747";
+    private String COLOR_ORANGE = "#ffab03";
 
     public MyDialog(Context context) {
         super(context);
@@ -71,10 +73,10 @@ public class MyDialog extends View {
         RectF oval = new RectF(space,space,width-space,width-space);
         Paint paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor("#474747"));
+        paint.setColor(Color.parseColor(COLOR_CENTER_CIR));
         canvas.drawArc(oval,0,360,false,paint);
 
-        paint.setColor(Color.parseColor("#ffab03"));
+        paint.setColor(Color.parseColor(COLOR_ORANGE));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(space/2);
 
@@ -83,6 +85,7 @@ public class MyDialog extends View {
         oval = new RectF(space/2,space/2,width-space/2,width-space/2);
 
 
+        // 环的渐变颜色
         int color = Color.parseColor("#232323");
         RadialGradient gradient = new RadialGradient(center.x,center.y,(float)(width - space),
                 new int[]{color,Color.TRANSPARENT},null, Shader.TileMode.REPEAT);
