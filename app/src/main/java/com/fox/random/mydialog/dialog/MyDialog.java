@@ -30,7 +30,7 @@ public class MyDialog extends View {
     private Bitmap background;
     private int width;
     private Center center = new Center();
-    private int progress = 37;
+    private int progress = 15;
     /**
      * default 100;
      */
@@ -60,7 +60,7 @@ public class MyDialog extends View {
         width = background.getWidth();
         center.x = width/2;
         center.y = width/2;
-        setBackgroundColor(Color.GREEN);
+        setBackgroundColor(Color.parseColor("#f0e9dd"));
     }
 
 
@@ -71,7 +71,7 @@ public class MyDialog extends View {
         RectF oval = new RectF(space,space,width-space,width-space);
         Paint paint = new Paint();
         paint.setAntiAlias(true);
-        paint.setColor(Color.parseColor("#3f3f3f"));
+        paint.setColor(Color.parseColor("#474747"));
         canvas.drawArc(oval,0,360,false,paint);
 
         paint.setColor(Color.parseColor("#ffab03"));
@@ -83,9 +83,9 @@ public class MyDialog extends View {
         oval = new RectF(space/2,space/2,width-space/2,width-space/2);
 
 
-        int color = Color.parseColor("#171717");
+        int color = Color.parseColor("#232323");
         RadialGradient gradient = new RadialGradient(center.x,center.y,(float)(width - space),
-                new int[]{color,Color.WHITE,color},null, Shader.TileMode.REPEAT);
+                new int[]{color,Color.TRANSPARENT},null, Shader.TileMode.REPEAT);
         paint.setShader(gradient);
 
         //圆形笔刷
