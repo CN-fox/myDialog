@@ -5,8 +5,10 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.text.TextPaint;
 import android.util.AttributeSet;
@@ -33,7 +35,7 @@ public class MyDialog extends View {
      * default 100;
      */
     private int max = 100;
-    private String speed = "23kb";
+    private String speed = "0kb";
 
     public MyDialog(Context context) {
         super(context);
@@ -79,10 +81,27 @@ public class MyDialog extends View {
         int percent = (int)(((float) progress / (float) max) * 100);
 
         oval = new RectF(space/2,space/2,width-space/2,width-space/2);
-        canvas.drawArc(oval,0,360 * progress / max,false,paint);
+
+
+        int color = Color.parseColor("#171717");
+        RadialGradient gradient = new RadialGradient(center.x,center.y,(float)(width - space),
+                new int[]{color,Color.WHITE,color},null, Shader.TileMode.REPEAT);
+        paint.setShader(gradient);
+
+        //圆形笔刷
+        paint.setStrokeCap(Paint.Cap.ROUND);
+
+        canvas.drawArc(oval, 0, 360, false, paint);
+
+        paint.setShader(null);
+
+        canvas.drawArc(oval,90,360 * progress / max,false,paint);
+
+
 
         paint = new TextPaint();
         paint.setTextSize(20);
+        paint.setDither(true);
         paint.setColor(Color.WHITE);
         paint.setAntiAlias(true);
 
