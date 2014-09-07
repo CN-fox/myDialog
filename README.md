@@ -1,0 +1,4 @@
+myDialog
+========
+
+just a dialog
