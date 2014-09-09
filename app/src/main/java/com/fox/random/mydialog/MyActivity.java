@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.fox.random.mydialog.dialog.MyDialog;
+
 
 public class MyActivity extends ActionBarActivity {
 
@@ -12,6 +14,24 @@ public class MyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        final MyDialog dialog = (MyDialog)findViewById(R.id.dialog);
+
+        new Thread(){
+            int progress = 0;
+            @Override
+            public void run() {
+
+                while (progress++<100){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    dialog.update((progress *((int)(10*Math.random()))) +"kb",progress);
+                }
+            }
+        }.start();
+
     }
 
 
